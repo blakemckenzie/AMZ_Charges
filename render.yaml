@@ -1,0 +1,9 @@
+# Render blueprint — static site. No build step, no server, no database.
+# The whole app is index.html + parser.js + app.js + style.css served as files.
+services:
+  - type: web
+    name: vsg-fee-parser
+    runtime: static
+    buildCommand: echo "static site - nothing to build"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false

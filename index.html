@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VSG Amazon Fee Parser</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Amazon Fee Parser</h1>
+    <p class="sub">Every charge on the transaction report, categorised and reconciled.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="privacy">
+    <strong>Everything happens in this browser.</strong> Files are parsed on your machine and
+    never uploaded. Months you drop in are remembered in this browser's local storage only —
+    not on a server, not on your other devices. Use <em>Back up</em> to keep a copy you can
+    restore anywhere.
+  </div>
+
+  <section id="dropzone" class="dropzone">
+    <div class="dz-inner">
+      <strong>Drop this month's transaction reports here</strong>
+      <span>US, CA, UK and EU together &mdash; market and month are read from each file</span>
+      <label class="btn">Choose files<input type="file" id="fileInput" multiple accept=".csv,text/csv" hidden></label>
+    </div>
+  </section>
+
+  <div id="uploadLog" class="log" hidden></div>
+
+  <section id="controls" hidden>
+    <div class="row">
+      <label for="periodSelect">Month</label>
+      <select id="periodSelect"></select>
+      <div class="toolbar">
+        <button class="btn ghost small" id="exportBtn">Export CSV</button>
+        <button class="btn ghost small" id="backupBtn">Back up</button>
+        <label class="btn ghost small">Restore<input type="file" id="restoreInput" accept=".json,application/json" hidden></label>
+        <button class="btn ghost small" id="clearBtn">Remove month</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="fxPanel" hidden>
+    <h2>Exchange rates</h2>
+    <p class="note">
+      Rates are stored as <strong>USD per 1 unit of local currency</strong>, always.
+      A pound buys more than a dollar (so GBP&rarr;USD is above&nbsp;1); a Canadian
+      dollar buys less (so CAD&rarr;USD is below&nbsp;1). Anything outside that shape
+      is the conversion applied backwards.
+    </p>
+    <div id="fxRows"></div>
+  </section>
+
+  <section id="summary" hidden></section>
+  <section id="breakdown" hidden></section>
+  <section id="channels" hidden></section>
+  <section id="unmapped" hidden></section>
+  <section id="shipments" hidden></section>
+  <section id="trend" hidden></section>
+  <section id="flags" hidden></section>
+
+</main>
+
+<footer class="wrap">
+  <span>Period is taken from the <strong>posted</strong> date. Deferred rows are counted &mdash;
+  never filter on release date.</span>
+</footer>
+
+<script src="parser.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
